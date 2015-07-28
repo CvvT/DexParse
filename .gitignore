@@ -61,3 +61,8 @@ target/
 
 .idea
 
+# my test file
+classes*
+diff.py
+Test.py
+

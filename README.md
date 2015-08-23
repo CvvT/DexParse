@@ -13,7 +13,7 @@ AddClass：
 
 AddJunk：
 展示如何给一个方法添加指令，＊＊＊＊本意是打算添加垃圾代码使反编译工具实效，果然也是然并卵，这种bug早就被修复了＊＊＊＊＊
-8月23日更新：最近发现了Dalvik中fill-array-data-payload这种伪指令，尝试使用这条指令加入垃圾指令，经测试可以使得baksmali，dex2jar无法正常工作。但是在修改过程中遇到的一个问题就是会抛出verifyError，经过一番搜索可以通过修改access_flag讲类修改成已验证，但是我不太明白为什么会抛出异常，希望有大侠能够指点！
+8月23日更新：最近发现了Dalvik中fill-array-data-payload这种伪指令，尝试使用这条指令加入垃圾指令，经测试可以使得baksmali，dex2jar无法正常工作。但是在修改过程中遇到的一个问题就是会抛出verifyError，经过一番搜索可以通过修改access_flag讲类修改成已验证，但是我不太明白为什么会抛出异常,以及修改access_flag的原因，希望有大侠能够指点！
 
 
 Instruction：

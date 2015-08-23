@@ -1241,6 +1241,7 @@ class EncodedhandlerItem:
         self.len = 0
         self.size = readsignedleb128(file)
         self.handlers = []
+        # print("start handler item", abs(self.size))
         for i in range(0, abs(self.size)):
             self.handlers.append(EncodedTypeAddrPair(file))
         if self.size <= 0:
@@ -2056,6 +2057,7 @@ class DexFile:
         classcoderef = None
         for i in range(0, count):
             if self.dexmaplist.dexmapitem[6].item[i].classIdx == index:
+                print("the class def index is :", i)
                 self.dexmaplist.dexmapitem[6].item[i].printf()
                 classdataref = self.dexmaplist.dexmapitem[6].item[i].classDataRef
                 flag = False
@@ -2232,8 +2234,10 @@ class DexFile:
         count = self.dexmaplist.dexmapitem[6].size
         encoded_method = None
         method_idx = 0
+        def_idx = 0
         for i in range(0, count):
             if self.dexmaplist.dexmapitem[6].item[i].classIdx == index:
+                def_idx = i
                 self.dexmaplist.dexmapitem[6].item[i].printf()
                 classdataref = self.dexmaplist.dexmapitem[6].item[i].classDataRef
                 flag = False
@@ -2264,7 +2268,14 @@ class DexFile:
                     if flag is False:
                         print("did not find the virtual method")
                 break
-        return {"method": encoded_method, "classidx": index, "methodidx": method_idx}
+        return {"method": encoded_method, "classidx": index, "methodidx": method_idx, "defidx": def_idx}
+
+    def verifyclass(self, def_idx):
+        classdef = self.dexmaplist.dexmapitem[6].item[def_idx]
+        classdef.accessFlags |= 0x00010000
+
+    def gettypeid(self, type):
+        return self.dexmaplist.dexmapitem[2].getindexbyname(type)
 
 def jiaguAll(dexfile, outfile):
     method_list = []    # record all method need to protect
@@ -2318,4 +2329,4 @@ if __name__ == '__main__':
     # dexfile.printf()
     # note: you need to delete file classescp.dex first, otherwise
     # new dex file will append the old one
-    dexfile.copytofile("classescp.dex")
+    # dexfile.copytofile("classescp.dex")

@@ -1,5 +1,5 @@
 # DexParse
-Parse and temper DEX<br>
+Parse and tamper DEX<br>
   1. Add/modify instructions/strings/fields/methods/classes
   2. disassemble to smali
 

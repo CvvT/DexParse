@@ -1,4 +1,8 @@
 # DexParse
+Parse and temper DEX<br>
+  1. Add/modify instructions/strings/fields/methods/classes
+  2. disassemble to smali
+
 update 2015.10.30<br>
 最近在阅读dexlib2的源码，才发现大牛写的代码质量就是高，相比之下自己的代码凌乱难以扩展，于是我决定弃坑了，这个项目不再继续研究了，打算开个新坑，基于dexlib2的dex tamper tool，目前支持两个dex文件合并（目的是为了植入代码），当然目前只能合并，如何调用仍需研究，希望能够实现的功能包括：<br>
 1.代码混淆（类名替换、字符串加密、流程替换、花指令）<br>
